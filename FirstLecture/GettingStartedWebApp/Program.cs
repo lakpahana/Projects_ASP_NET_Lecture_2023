@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using GettingStartedWebApp.Data;
+using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-
+builder.Services.AddDbContext<GettingStartedWebAppContext>(options =>
+    options.UseSqlite("Data Source=GettingStartedWebAppContext"));
 var app = builder.Build();
+
+// var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
